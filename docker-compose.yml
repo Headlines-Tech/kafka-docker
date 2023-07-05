@@ -9,7 +9,7 @@ services:
     volumes:
       - ./data/zoo/data:/var/lib/zookeeper/data
       - ./data/zoo/log:/var/lib/zookeeper/log
-
+    restart: unless-stopped
   broker:
     image: confluentinc/cp-kafka:latest
     container_name: broker
@@ -30,6 +30,7 @@ services:
       KAFKA_LOG_RETENTION_MS: 86400000
     volumes:
       - ./data/kafka:/var/lib/kafka/data
+    restart: unless-stopped
 
   kafka-ui:
     image: provectuslabs/kafka-ui
